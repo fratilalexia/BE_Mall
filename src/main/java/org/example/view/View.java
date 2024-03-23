@@ -10,7 +10,7 @@ import java.util.Scanner;
 
 public class View {
 
-    private Scanner scanner;
+    private final Scanner scanner;
 
     @Autowired
     private CustomerController customerController;

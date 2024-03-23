@@ -46,4 +46,8 @@ public class CustomerController {
     public List<Customer> getAllCustomers() {
         return customerRepository.findAll();
     }
+
+    public List<Customer> searchByName(String name) {
+        return customerRepository.findByFirstNameContainingOrLastNameContaining(name, name);
+    }
 }

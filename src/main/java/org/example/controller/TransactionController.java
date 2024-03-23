@@ -1,5 +1,7 @@
 package org.example.controller;
 
+import org.example.model.Customer;
+import org.example.model.Store;
 import org.example.model.Transaction;
 import org.example.repository.TransactionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,5 +57,14 @@ public class TransactionController {
 
     public List<Transaction> getTransactionsByStoreAndDate(Long storeId, LocalDate date) {
         return transactionRepository.findByStoreIdAndDate(storeId, date);
+    }
+
+    public List<Transaction> getTransactionsByCustomerAndStore(Customer customer, Store store) {
+        return transactionRepository.findByCustomerAndStore(customer, store);
+    }
+
+    public List<Transaction> getTransactionsByDate(LocalDate date) {
+        return transactionRepository.findByDate(date);
+
     }
 }

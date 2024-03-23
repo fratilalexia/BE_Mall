@@ -132,6 +132,177 @@ public class ManagerView {
                     }
                 }
             }
+            case 9 -> {
+                System.out.print("Enter customer name to search: ");
+                String name = scanner.nextLine();
+                List<Customer> foundCustomers = customerController.searchByName(name);
+                if (foundCustomers.isEmpty()) {
+                    System.out.println("No customers found with name: " + name);
+                } else {
+                    for (Customer customer : foundCustomers) {
+                        System.out.println(customer);
+                    }
+                }
+            }
+            case 10 -> {
+                System.out.print("Enter store ID to edit: ");
+                Long storeId = scanner.nextLong();
+                scanner.nextLine();
+
+                Optional<Store> storeOptional = storeController.findById(storeId);
+                if (storeOptional.isPresent()) {
+                    Store store = storeOptional.get();
+
+                    System.out.print("Enter new name for the store: ");
+                    String newName = scanner.nextLine();
+
+                    store.setName(newName);
+                    storeController.updateStore(store);
+
+                    System.out.println("Store information updated successfully.");
+                } else {
+                    System.out.println("Store not found with ID: " + storeId);
+                }
+            }
+
+            case 11 -> {
+                System.out.print("Enter the ID of the salesperson you want to edit: ");
+                Long salespersonId = scanner.nextLong();
+                scanner.nextLine();
+
+                Optional<Salesperson> salespersonOptional = salespersonController.findById(salespersonId);
+                if (salespersonOptional.isPresent()) {
+                    Salesperson salesperson = salespersonOptional.get();
+
+                    System.out.print("Enter the new first name: ");
+                    String newFirstName = scanner.nextLine();
+                    System.out.print("Enter the new last name: ");
+                    String newLastName = scanner.nextLine();
+                    System.out.print("Enter the new paycheck: ");
+                    double newPaycheck = scanner.nextDouble();
+
+                    salesperson.setFirstName(newFirstName);
+                    salesperson.setLastName(newLastName);
+                    salesperson.setPayCheck(newPaycheck);
+
+                    salespersonController.updateSalesperson(salesperson);
+
+                    System.out.println("Salesperson information updated successfully.");
+                } else {
+                    System.out.println("Salesperson not found with ID: " + salespersonId);
+                }
+            }
+            case 12 -> {
+                System.out.print("Enter salesperson ID to increase paycheck: ");
+                Long salespersonId = scanner.nextLong();
+                scanner.nextLine();
+
+                Optional<Salesperson> salespersonOptional = salespersonController.findById(salespersonId);
+                if (salespersonOptional.isPresent()) {
+
+                    System.out.print("Enter the amount to increase paycheck: ");
+                    double increaseAmount = scanner.nextDouble();
+
+                    salespersonController.increasePaycheck(salespersonId, increaseAmount);
+
+                    System.out.println("Paycheck increased successfully.");
+                } else {
+                    System.out.println("Salesperson not found with ID: " + salespersonId);
+                }
+            }
+            case 13 -> {
+                System.out.print("Enter store name: ");
+                String storeName = scanner.nextLine();
+                System.out.print("Enter max number of customers: ");
+                int maxCustomers = scanner.nextInt();
+                System.out.print("Enter initial profit: ");
+                double profit = scanner.nextDouble();
+
+                Store newStore = new Store();
+                newStore.setName(storeName);
+                newStore.setMaxCustomers(maxCustomers);
+                newStore.setProfit(profit);
+
+                storeController.createStore(newStore);
+
+                System.out.println("Store added successfully.");
+            }
+            case 14 -> {
+                System.out.print("Enter salesperson first name: ");
+                String firstName = scanner.nextLine();
+                System.out.print("Enter salesperson last name: ");
+                String lastName = scanner.nextLine();
+                System.out.print("Enter initial paycheck: ");
+                double paycheck = scanner.nextDouble();
+
+                Salesperson newSalesperson = new Salesperson();
+                newSalesperson.setFirstName(firstName);
+                newSalesperson.setLastName(lastName);
+                newSalesperson.setPayCheck(paycheck);
+
+                salespersonController.createSalesperson(newSalesperson);
+
+                System.out.println("Salesperson added successfully.");
+            }
+            case 15 -> {
+                System.out.print("Enter customer first name: ");
+                String firstName = scanner.nextLine();
+                System.out.print("Enter customer last name: ");
+                String lastName = scanner.nextLine();
+                System.out.print("Enter initial credit: ");
+                double credit = scanner.nextDouble();
+
+                Customer newCustomer = new Customer();
+                newCustomer.setFirstName(firstName);
+                newCustomer.setLastName(lastName);
+                newCustomer.setCredit(credit);
+
+                customerController.createCustomer(newCustomer);
+
+                System.out.println("Customer added successfully.");
+            }
+            case 16 -> {
+                System.out.print("Enter store ID to delete: ");
+                Long storeIdToDelete = scanner.nextLong();
+
+                Optional<Store> storeOptional = storeController.findById(storeIdToDelete);
+                if (storeOptional.isPresent()) {
+                    Store storeToDelete = storeOptional.get();
+
+                    storeController.deleteStore(storeToDelete);
+                    System.out.println("Store deleted successfully.");
+                } else {
+                    System.out.println("Store not found with ID: " + storeIdToDelete);
+                }
+            }
+            case 17 -> {
+                System.out.print("Enter salesperson ID to delete: ");
+                Long salespersonIdToDelete = scanner.nextLong();
+
+                Optional<Salesperson> salespersonOptional = salespersonController.findById(salespersonIdToDelete);
+                if (salespersonOptional.isPresent()) {
+                    Salesperson salespersonToDelete = salespersonOptional.get();
+
+                    salespersonController.deleteSalesperson(salespersonToDelete);
+                    System.out.println("Salesperson deleted successfully.");
+                } else {
+                    System.out.println("Salesperson not found with ID: " + salespersonIdToDelete);
+                }
+            }
+            case 18 -> {
+                System.out.print("Enter customer ID to delete: ");
+                Long customerIdToDelete = scanner.nextLong();
+
+                Optional<Customer> customerOptional = customerController.findById(customerIdToDelete);
+                if (customerOptional.isPresent()) {
+                    Customer customerToDelete = customerOptional.get();
+
+                    customerController.deleteCustomer(customerToDelete);
+                    System.out.println("Customer deleted successfully.");
+                } else {
+                    System.out.println("Customer not found with ID: " + customerIdToDelete);
+                }
+            }
 
             default -> {
                 System.out.println("Invalid choice. Please choose another number from above.");

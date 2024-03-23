@@ -48,4 +48,16 @@ public class SalespersonController {
     public List<Salesperson> searchByName(String name) {
         return salespersonRepository.searchByFirstName(name);
     }
+
+    public void increasePaycheck(Long salespersonId, double increaseAmount) {
+        Optional<Salesperson> salespersonOptional = salespersonRepository.findById(salespersonId);
+        if (salespersonOptional.isPresent()) {
+            Salesperson salesperson = salespersonOptional.get();
+            double currentPaycheck = salesperson.getPayCheck();
+            salesperson.setPayCheck(currentPaycheck + increaseAmount);
+            salespersonRepository.save(salesperson);
+        } else {
+            throw new IllegalArgumentException("Salesperson not found with ID: " + salespersonId);
+        }
+    }
 }

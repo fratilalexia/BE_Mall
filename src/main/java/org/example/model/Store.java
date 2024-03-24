@@ -11,35 +11,35 @@ import java.util.List;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name="store")
+@Table(name = "store")
 public class Store {
-   @Id
-   @GeneratedValue(strategy = GenerationType.IDENTITY)
-   Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    Long id;
 
-   @Column(name = "name")
-   @NonNull
-   private String name;
+    @Column(name = "name")
+    @NonNull
+    private String name;
 
-   @Column(name = "maxCustomers")
-   @NonNull
-   private Integer maxCustomers;
+    @Column(name = "maxCustomers")
+    @NonNull
+    private Integer maxCustomers;
 
-   @Column(name = "profit")
-   @NonNull
-   private Double profit;
+    @Column(name = "profit")
+    @NonNull
+    private Double profit;
 
-   @OneToMany(cascade = CascadeType.ALL,
-           orphanRemoval = true,
-           mappedBy = "store",
-           fetch = FetchType.EAGER)
-   @JsonIgnore
-   private List<Salesperson> salespersons;
+    @OneToMany(cascade = CascadeType.ALL,
+            orphanRemoval = true,
+            mappedBy = "store",
+            fetch = FetchType.EAGER)
+    @JsonIgnore
+    private List<Salesperson> salespersons;
 
-   @OneToMany(cascade = CascadeType.ALL,
-           orphanRemoval = true,
-           mappedBy = "store",
-           fetch = FetchType.EAGER)
-   @JsonIgnore
-   private List<Transaction> transactions;
+    @OneToMany(cascade = CascadeType.ALL,
+            orphanRemoval = true,
+            mappedBy = "store",
+            fetch = FetchType.EAGER)
+    @JsonIgnore
+    private List<Transaction> transactions;
 }

@@ -1,9 +1,7 @@
 package org.example.view;
 
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import org.example.controller.CustomerController;
-import org.example.controller.SalespersonController;
 import org.example.controller.StoreController;
 import org.example.controller.TransactionController;
 import org.example.model.Customer;

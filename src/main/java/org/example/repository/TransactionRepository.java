@@ -12,6 +12,7 @@ import java.util.List;
 @Repository
 public interface TransactionRepository extends JpaRepository<Transaction, Long> {
     int countByStoreIdAndDate(Long storeId, LocalDate date);
+
     List<Transaction> findByStoreIdAndDate(Long storeId, LocalDate date);
 
     List<Transaction> findByCustomerAndStore(Customer customer, Store store);

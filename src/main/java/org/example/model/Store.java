@@ -42,5 +42,4 @@ public class Store {
            fetch = FetchType.EAGER)
    @JsonIgnore
    private List<Transaction> transactions;
-
 }

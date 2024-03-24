@@ -1,28 +1,13 @@
 package org.example.view;
 
-import org.example.controller.CustomerController;
-import org.example.controller.SalespersonController;
-import org.example.controller.StoreController;
-import org.example.controller.TransactionController;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 
 import java.util.Scanner;
 
+@AllArgsConstructor
 public class View {
 
     private final Scanner scanner;
-
-    @Autowired
-    private CustomerController customerController;
-
-    @Autowired
-    private SalespersonController salespersonController;
-
-    @Autowired
-    private StoreController storeController;
-
-    @Autowired
-    private TransactionController transactionController;
 
     public View() {
         this.scanner = new Scanner(System.in);
@@ -40,11 +25,11 @@ public class View {
 
         switch (choice) {
             case 1 -> {
-                ManagerView managerView = new ManagerView(customerController, salespersonController, storeController, transactionController);
+                ManagerView managerView = new ManagerView();
                 managerView.display();
             }
             case 2 -> {
-                CustomerView customerView = new CustomerView(customerController, salespersonController, storeController, transactionController);
+                CustomerView customerView = new CustomerView();
                 customerView.display();
             }
             default -> {

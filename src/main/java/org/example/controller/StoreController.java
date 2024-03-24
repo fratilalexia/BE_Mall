@@ -1,20 +1,20 @@
 package org.example.controller;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import org.example.model.Store;
 import org.example.repository.StoreRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 
 import java.util.List;
 import java.util.Optional;
 
+@AllArgsConstructor
+@NoArgsConstructor
+@Controller
 public class StoreController {
 
-    @Autowired
     StoreRepository storeRepository;
-
-    public StoreController(StoreRepository storeRepository) {
-        this.storeRepository = storeRepository;
-    }
 
     public void createStore(Store store) {
         storeRepository.save(store);

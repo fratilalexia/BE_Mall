@@ -1,21 +1,20 @@
 package org.example.controller;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import org.example.model.Customer;
 import org.example.repository.CustomerRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 
 import java.util.List;
 import java.util.Optional;
 
+@AllArgsConstructor
+@NoArgsConstructor
+@Controller
 public class CustomerController {
 
-    @Autowired
     CustomerRepository customerRepository;
-
-    @Autowired
-    public CustomerController(CustomerRepository customerRepository) {
-        this.customerRepository = customerRepository;
-    }
 
     public void createCustomer(Customer customer) {
         customerRepository.save(customer);

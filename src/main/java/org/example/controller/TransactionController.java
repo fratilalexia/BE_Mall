@@ -1,23 +1,23 @@
 package org.example.controller;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import org.example.model.Customer;
 import org.example.model.Store;
 import org.example.model.Transaction;
 import org.example.repository.TransactionRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
+@AllArgsConstructor
+@NoArgsConstructor
+@Controller
 public class TransactionController {
 
-    @Autowired
     TransactionRepository transactionRepository;
-
-    public TransactionController(TransactionRepository transactionRepository) {
-        this.transactionRepository = transactionRepository;
-    }
 
     public void createTransaction(Transaction transaction) {
         transactionRepository.save(transaction);

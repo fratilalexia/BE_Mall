@@ -1,5 +1,7 @@
 package org.example.view;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import org.example.controller.CustomerController;
 import org.example.controller.SalespersonController;
 import org.example.controller.StoreController;
@@ -13,17 +15,15 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
 
+@AllArgsConstructor
 public class CustomerView {
-    private final Scanner scanner;
-    private final CustomerController customerController;
-    private final StoreController storeController;
-    private final TransactionController transactionController;
+    Scanner scanner;
+    CustomerController customerController;
+    StoreController storeController;
+    TransactionController transactionController;
 
-    public CustomerView(CustomerController customerController, SalespersonController salespersonController, StoreController storeController, TransactionController transactionController) {
+    public CustomerView() {
         this.scanner = new Scanner(System.in);
-        this.customerController = customerController;
-        this.storeController = storeController;
-        this.transactionController = transactionController;
     }
 
     public void display() {
